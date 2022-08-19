@@ -20,7 +20,14 @@
     }
 
 Проверить, чтобы все работало без ошибок в консоли */
-const numberOfFilms = +prompt ('сколько фильмов видел?','');
+let numberOfFilms;
+function start (){
+    numberOfFilms = +prompt('Сколько фильмов смотрел?','');
+    while (numberOfFilms == ''|| numberOfFilms == null || isNaN(numberOfFilms)){
+        numberOfFilms = +prompt('Сколько фильмов смотрел?','');   
+    }
+}
+start ();
 const personalMovieDB = {
     count : numberOfFilms,
     movies : {}, 
@@ -28,33 +35,43 @@ const personalMovieDB = {
     genres :[],
     privat : false
 };
-if (personalMovieDB.count<10 ){
-    alert('маловато');
-} else {
-    if (personalMovieDB.count > 30){
-        alert ('Kinoman');
+function rememberMyFilms()
+    {
+        for (let i = 0; i < 2;i++)
+        {
+            const    a = prompt('Один из последних просмотренных фильмов?',''),    
+                b = prompt ('На сколько оцените его?','');
+                if (a!=null &&  b!=null && a!= '' && b!= '' && a.length < 50)
+                {
+                    personalMovieDB.movies[a]= b;
+                    console.log('done');
+                } else 
+                {
+                    concole.log('error');
+                    i--;
+                }
+        }
+    }
+/* rememberMyFilms(); */
+function detectPersonalLevel (){
+    if (personalMovieDB.count<10 ){
+        alert('маловато');
     } else {
-        alert ('classic viewer');
+        if (personalMovieDB.count > 30){
+            alert ('Kinoman');
+        } else {
+            alert ('classic viewer');
+        }
     }
 }
-const a = prompt('Один из последних просмотренных фильмов?',''),    
-      b = prompt ('На сколько оцените его?',''),
-      c = prompt('Один из последних просмотренных фильмов?',''),
-      d = prompt ('На сколько оцените его?','');
-personalMovieDB.movies[a]= b; 
-personalMovieDB.movies[c]= d; 
-for (let i = 0; i < 2;i++) {
-const    a = prompt('Один из последних просмотренных фильмов?',''),    
-    b = prompt ('На сколько оцените его?','');
-    if (a!=null &&  b!=null && a!= '' && b!= '' && a.length < 50){
-        personalMovieDB.movies[a]= b;
-        console.log('done');
-    } else {
-        concole.log('error');
-        i--;
+detectPersonalLevel();
+function favGenre (){
+    for (let i = 1; i <=3; i++){
+        const genre = prompt(`назови любимый жанр номер ${i}`);
+        personalMovieDB.genres[i-1] = genre;  
     }
 }
+favGenre ();
 console.log(personalMovieDB);
-
-
+ 
 
