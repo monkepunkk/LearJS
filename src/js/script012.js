@@ -67,8 +67,7 @@ function detectPersonalLevel (){
 detectPersonalLevel();
 function favGenre (){
     for (let i = 1; i <=3; i++){
-        const genre = prompt(`назови любимый жанр номер ${i}`);
-        personalMovieDB.genres[i-1] = genre;  
+        personalMovieDB.genres[i-1] = prompt(`назови любимый жанр номер ${i}`);  
     }
 }
 favGenre ();
